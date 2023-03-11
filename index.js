@@ -1,43 +1,50 @@
-let car = { name: "소나타", price: [50000, 3000, 4000] };
-const nameEl = document.querySelector(".name");
-nameEl.textContent = car.name;
-const price = document.querySelector(".price");
-price.textContent = car.price[0];
-
-let 출석부 = ["흥민", "영희", "철수", "재석"];
-
-//for 반복문 연습
-function 이름찾기(a) {
-  for (let i = 0; i < 4; i++) {
-    if (a === 출석부[i]) {
-      console.log("있어요");
-    }
-  }
+//prototype
+function Student() {
+  (this.name = "Lee"), (this.age = 15);
 }
-이름찾기("흥민");
+Student.prototype.gender = "여";
+let 학생1 = new Student();
+let 학생2 = new Student();
+console.log(학생1);
+console.log(학생2.__proto__);
 
-//for 반복문 연습2
-function 구구단() {
-  for (let i = 1; i < 9; i++) {
-    for (let j = 1; j < 10; j++) {
-      console.log((i + 1) * j);
-    }
-  }
+function Student2() {
+  (this.name = "Lee"), (this.age = 15), (this.gender = "여");
 }
-console.log(구구단());
+let 학생11 = new Student2();
+let 학생12 = new Student2();
+console.log(학생11);
+console.log(학생12);
+console.log(Student2.prototype);
 
-//for 반복문 연습3
-function 성적비교(a, b) {
-  let result = 0;
-  for (let i = 0; i < a.length; i++) {
-    result += a[i];
-  }
-  let comparison = Math.abs(result / a.length - b);
-  if (comparison > 0) {
-    return `평균보다 ${comparison}점 올랐네요`;
-  } else {
-    return `평균보다 ${comparison}점 떨어졌네요`;
-  }
+function Something(이름, 나이) {
+  this.name = 이름;
+  this.age = 나이;
+  this.sayHi = function () {
+    console.log("안녕 나는" + this.name + "이야");
+  };
 }
-console.log(성적비교([10, 20, 30, 40, 50], 40));
-console.log(성적비교([40, 40, 40], 20));
+const 학생56 = new Something("김", 20);
+console.log(학생56);
+
+//__proto__
+function Parent() {
+  this.name = "Kim";
+}
+const a = new Parent();
+console.log(1, a);
+console.log(2, a.__proto__);
+a.__proto__.name = "Park";
+console.log(a.name);
+
+//8번 문제
+// function 글자세기(a) {
+//   let arr = [...a];
+//   let obj={}
+//   for(let i=0;i<arr.length;i++){
+//     if (arr[i]==='a'){
+//       obj.
+//     }
+//   }
+
+// 글자세기("aacbbb");
