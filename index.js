@@ -1,50 +1,112 @@
-//prototype
-function Student() {
-  (this.name = "Lee"), (this.age = 15);
+// class
+class 할아버지 {
+  constructor(이름) {
+    this.name = 이름;
+  }
+  sayHi() {
+    console.log(`i'm your grandfather`);
+  }
 }
-Student.prototype.gender = "여";
-let 학생1 = new Student();
-let 학생2 = new Student();
-console.log(학생1);
-console.log(학생2.__proto__);
-
-function Student2() {
-  (this.name = "Lee"), (this.age = 15), (this.gender = "여");
+class 아버지 extends 할아버지 {
+  constructor(이름, 나이) {
+    super(이름);
+    this.age = 나이;
+  }
+  sayHello() {
+    super.sayHi();
+    console.log(`I'm your father`);
+  }
 }
-let 학생11 = new Student2();
-let 학생12 = new Student2();
-console.log(학생11);
-console.log(학생12);
-console.log(Student2.prototype);
+const 아버지1 = new 아버지();
+console.log(아버지1.sayHello());
 
-function Something(이름, 나이) {
-  this.name = 이름;
-  this.age = 나이;
-  this.sayHi = function () {
-    console.log("안녕 나는" + this.name + "이야");
-  };
+// getter & setter
+const hyewon = {
+  name: "hana",
+  age: 27,
+  set nextAge(나이) {
+    this.age = 나이 + 1;
+  },
+};
+hyewon.nextAge = 40;
+console.log(hyewon.age);
+
+// class, extends, getter, setter 연습문제 5개
+//1.
+class Dog {
+  constructor(타입, 색깔) {
+    this.type = 타입;
+    this.color = 색깔;
+  }
 }
-const 학생56 = new Something("김", 20);
-console.log(학생56);
-
-//__proto__
-function Parent() {
-  this.name = "Kim";
+2;
+class Cat extends Dog {
+  constructor(타입, 색깔, 나이) {
+    super(타입, 색깔);
+    this.age = 나이;
+  }
 }
-const a = new Parent();
-console.log(1, a);
-console.log(2, a.__proto__);
-a.__proto__.name = "Park";
-console.log(a.name);
+// 3.
+class Cat extends Dog {
+  constructor(타입, 색깔, 나이) {
+    super(타입, 색깔);
+    this.age = 나이;
+  }
+  set setAge(몇살) {
+    this.age = Number(몇살 + 1);
+  }
+  get nextAge() {
+    return this.age;
+  }
+}
 
-//8번 문제
-// function 글자세기(a) {
-//   let arr = [...a];
-//   let obj={}
-//   for(let i=0;i<arr.length;i++){
-//     if (arr[i]==='a'){
-//       obj.
-//     }
-//   }
+const kitty = new Cat(2, 1, 20);
+console.log(kitty);
+const puppy = new Dog(4, 5, 6);
+console.log(puppy);
+kitty.setAge = 29;
+console.log(kitty.nextAge);
+console.log(puppy.nextAge);
 
-// 글자세기("aacbbb");
+4;
+class Unit {
+  constructor() {
+    this.공격력 = 5;
+    this.체력 = 100;
+  }
+  get battlePoint() {
+    return this.공격력 + this.체력;
+  }
+  set heal(증가) {
+    this.체력 += Number(증가);
+  }
+}
+const 캐릭터 = new Unit();
+캐릭터.heal = 70;
+console.log(캐릭터.battlePoint);
+
+//5.
+const data = {
+  odd: [],
+  even: [],
+  분리해주는함수: function (...x) {
+    for (let i = 0; i < x.length; i++) {
+      if (x[i] % 2 == 0) {
+        this.even.push(x[i]);
+      } else {
+        this.odd.push(x[i]);
+      }
+    }
+    return data;
+  },
+  겟함수: function () {
+    const result = [...this.odd, ...this.even].sort(function (comp1, comp2) {
+      return comp1 - comp2;
+    });
+
+    return result;
+  },
+};
+
+console.log(data.분리해주는함수(11, 8, 3, 4));
+console.log(0, data.겟함수());
