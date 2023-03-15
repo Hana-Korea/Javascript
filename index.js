@@ -1,13 +1,24 @@
-//async & await
-const btnEl = document.querySelector("button");
+// const btnEl = document.querySelector("button");
+// async function 버튼클릭함수() {
+//   const 프로미스 = new Promise(function (res, rej) {
+//     btnEl.addEventListener("click", () => {
+//       res("ㅇㅇ");
+//     });
+//   });
+//   프로미스.then((결과) => {
+//     console.log(결과);
+//   });
+// }
+// 버튼클릭함수();
 
-async function 버튼클릭() {
-  const 버튼성공판정 = new Promise(function (res, rej) {
+const btnEl = document.querySelector("button");
+async function 버튼클릭함수() {
+  const 프로미스 = new Promise(function (res, rej) {
     btnEl.addEventListener("click", () => {
-      res("success");
+      res("ㅇㅇ");
     });
   });
-  const 찐결과 = await 버튼성공판정;
-  console.log(찐결과);
+  const result = await 프로미스;
+  console.log(result);
 }
-버튼클릭();
+버튼클릭함수();
