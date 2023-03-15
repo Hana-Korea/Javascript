@@ -1,63 +1,76 @@
-// for in
-
-class 부모 {}
-부모.prototype.name = "kim";
-
-const obj = new 부모();
-
-for (let key in obj) {
-  if (obj.hasOwnProperty(key)) {
-    console.log(obj[key]);
-  }
+// callback hell
+function 첫째함수(구멍) {
+  console.log(1);
+  구멍();
+}
+function 둘째함수(구멍1) {
+  console.log(2);
+  구멍1();
 }
 
-// for of 구구단
-
-const arr = [1, 2, 3, 4, 5, 6, 7, 8];
-const arr2 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-for (let 자료 of arr) {
-  for (let 자료2 of arr2) {
-    console.log((자료 + 1) * 자료2);
-  }
+function 셋째함수(구멍2) {
+  console.log(3);
+  구멍2();
+}
+function 넷째함수() {
+  console.log(4);
 }
 
-// 연습문제
-const products1 = [
-  {
-    name1: "chair",
-    price1: 7000,
-  },
-  {
-    name2: "sofa",
-    price: 5000,
-  },
-  {
-    name1: "desk",
-    price3: 9000,
-  },
-];
-// function 제거(products) {
-//   let result = {};
-//   for (let i of products) {
-//     for (let key in i) {
-//       if (typeof key.slice(-1) == "number") {
+첫째함수(function () {
+  둘째함수(function () {
+    셋째함수(function () {
+      넷째함수();
+    });
+  });
+});
 
-//       } else {
-//       }
-//     }
-//   }
-// }
-// console.log(제거(products1));
+//Promise
+const 프로미스 = new Promise(function (res, rej) {
+  setTimeout(() => {
+    res();
+  }, 1000);
+});
+프로미스
+  .then(() => {
+    console.log("성공");
+  })
+  .catch(() => {
+    console.log("tlfv");
+  });
+console.log(프로미스);
+setTimeout(() => {
+  console.log(프로미스);
+}, 2000);
 
-// 심볼
-const 심볼 = Symbol("설명");
-const weight = Symbol("몸무게 비밀");
-const height = Symbol("키 비밀임ㄴ");
-const person = {
-  name: "Lee",
-};
-person.weight = 45;
+// img 로딩 성공시 특정코드 실행
+const imgEl = document.querySelector("img");
+const 프로미스2 = new Promise(function (res, rej) {
+  imgEl.addEventListener("load", res);
+  imgEl.addEventListener("error", rej);
+});
+프로미스2
+  .then(() => {
+    console.log("성공했어요");
+  })
+  .catch(() => {
+    console.log("실패");
+  });
 
-person[weight] = 200;
-
-console.log(person.weight);
+//ajax 요청 성공하면 코드 실행
+const greeting = new Promise(function (res, rej) {
+  $.get("https://codingapple1.github.io/hello.txt").done(function (결과) {
+    res(결과);
+  });
+});
+greeting
+  .then(function (결과) {
+    const 프로미스3 = new Promise(function (res, rej) {
+      $.get("https://codingapple1.github.io/hello2.txt").done(function (결과2) {
+        res(결과2);
+      });
+    });
+    return 프로미스3;
+  })
+  .then((결과2) => {
+    console.log(결과2);
+  });
